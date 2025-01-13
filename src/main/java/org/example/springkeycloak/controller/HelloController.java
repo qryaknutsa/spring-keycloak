@@ -15,13 +15,11 @@ public class HelloController {
     }
 
     @GetMapping("admin")
-//    @PreAuthorize("hasRole('admin')")
     public String admin() {
         return "Hello World - admin";
     }
 
     @GetMapping("user")
-//    @PreAuthorize("hasRole('user')")
     public String user() {
         return "Hello World - user";
     }

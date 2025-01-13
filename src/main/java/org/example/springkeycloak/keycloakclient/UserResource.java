@@ -2,7 +2,6 @@ package org.example.springkeycloak.keycloakclient;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.ws.rs.core.Response;
-import org.example.springkeycloak.dto.Role;
 import org.example.springkeycloak.dto.User;
 import org.example.springkeycloak.security.KeycloakSecurityUtil;
 import org.keycloak.admin.client.Keycloak;
@@ -15,7 +14,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -67,21 +65,7 @@ public class UserResource {
 		return Response.ok().build();
 	}
 	
-	@GetMapping(value = "/users/{id}/roles")
-	public List<Role> getRoles(@PathVariable("id") String id) {
-		Keycloak keycloak = keycloakUtil.getKeycloakInstance();
-		return RoleResource.mapRoles(keycloak.realm(realm).users()
-				.get(id).roles().realmLevel().listAll());
-	}
 
-	@PostMapping(value = "/users/{id}/roles/{roleName}")
-	public Response createRole(@PathVariable("id") String id, 
-			@PathVariable("roleName") String roleName) {
-		Keycloak keycloak = keycloakUtil.getKeycloakInstance();
-		RoleRepresentation role = keycloak.realm(realm).roles().get(roleName).toRepresentation();
-		keycloak.realm(realm).users().get(id).roles().realmLevel().add(Arrays.asList(role));
-		return Response.ok().build();
-	}
 
 	private List<User> mapUsers(List<UserRepresentation> userRepresentations) {
 		List<User> users = new ArrayList<>();
