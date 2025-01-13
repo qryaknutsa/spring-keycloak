@@ -1,0 +1,22 @@
+{
+  "realm": "dive-dev",
+  "auth-server-url": "http://127.0.0.1:8081",
+  "resource": "springboot-be",
+  "credentials": {
+    "secret": "26D3YXp850Blw5WSEY69D2D1T2hWJGZa"
+  },
+  "paths": [
+    {
+      "path": "/hello",
+      "enforcement-mode": "DISABLED"
+    },
+    {
+      "path": "/swagger-ui/*",
+      "enforcement-mode": "DISABLED"
+    },
+    {
+      "path": "/v3/api-docs/*",
+      "enforcement-mode": "DISABLED"
+    }
+  ]
+}
